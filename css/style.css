@@ -2,7 +2,7 @@ body {
   background-color: lightgrey;
 }
 
-header {
+/* header {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: black;
     font-size: 25px;
@@ -14,10 +14,7 @@ header {
     margin-right: auto;
     margin-top: 25px;
     
-}
+} */
 
-article ul {
-  list-style-type: circle;
-  margin: 25px;
-}
+
 
