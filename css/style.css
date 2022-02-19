@@ -30,7 +30,6 @@ nav ul {
   width: 960px;
   margin: auto;
   margin-top: 25px;
-
 }
 
 a {
@@ -53,6 +52,7 @@ a {
 #family-bio-cookiepic h2 {
   font-size: 25px;
   margin-bottom: 5px;
+  text-decoration: underline;
 }
 
 #family-bio-cookiepic div {
@@ -76,6 +76,7 @@ a {
 #hours-locations-contactinfo h2 {
   font-size: 25px;
   margin-bottom: 5px;
+  text-decoration: underline;
 }
 
 #three-pics {
