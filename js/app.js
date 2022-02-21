@@ -75,6 +75,9 @@ lima.getTotalCookiesPurchased();
 
 // window into the DOM
 let domWindowTable = document.getElementById('cookie-table');
+let cookieForm = document.getElementById('sales-form');
+let footer = document.createElement('tfoot');
+
 
 
 function renderTableHeader() {
@@ -100,6 +103,10 @@ function renderTableHeader() {
 }
 
 renderTableHeader();
+
+
+
+
 
 function renderTableBody() {
   let tBodyElem = document.createElement('tbody');
@@ -197,19 +204,76 @@ function renderTableBody() {
 
 renderTableBody();
 
+
+
+
+
 function renderTableFooter() {
-  let tBodyElem = document.createElement('tfoot');
-  domWindowTable.appendChild(tBodyElem);
+  let tFooterElem = document.createElement('tfoot');
+  domWindowTable.appendChild(tFooterElem);
 
   let tRowElem = document.createElement('tr');
-  tBodyElem.appendChild(tRowElem);
+  tFooterElem.appendChild(tRowElem);
 
   let tDataElem = document.createElement('td');
   tDataElem.textContent = 'Totals';
   tRowElem.appendChild(tDataElem);
+
+
+  let dailyTotal = 0;
+  for (let i = 0; i < storeHours.length; i++) {
+    let hourTotal = 0;
+    for (let j = 0; j < objectStorage.length; j++) {
+      hourTotal = hourTotal + objectStorage[j].cookieSalesPerHour[i];
+    }
+    let tdhourlyTotal = document.createElement('td');
+    tdhourlyTotal.textContent = `${hourTotal}`;
+    tRowElem.appendChild(tdhourlyTotal);
+    dailyTotal = dailyTotal + hourTotal;
+  }
+
+  let tdDailyTotal = document.createElement('td');
+  tdDailyTotal.textContent = `${dailyTotal}`;
+  tRowElem.appendChild(tdDailyTotal);
+
 }
 
 renderTableFooter();
+
+
+
+
+
+
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let location = event.target.location.value;
+  let minCust = parseInt(event.target.minCust.value);
+  let maxCust = parseInt(event.target.maxCust.value);
+  let salesPerCust = parseInt(event.target.salesPerCust.value);
+
+  let newCity = new Store(location, minCust, maxCust, salesPerCust);
+
+  newCity.avgCookie();
+  newCity.render();
+
+
+  footer.innerHTML = '';
+  renderTableFooter();
+
+}
+
+cookieForm.addEventListener('submit', handleSubmit);
+
+
+
+
+
+
+
+
+
 
 
 
